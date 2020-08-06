@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// experimental
 class MarkdownText extends StatelessWidget {
   final String content;
   const MarkdownText(this.content, {Key key}) : super(key: key);
@@ -13,7 +14,7 @@ class MarkdownText extends StatelessWidget {
     const _boldStyle =
         TextStyle(fontWeight: FontWeight.bold, color: Colors.black);
     const _italicStyle =
-        TextStyle(fontStyle: FontStyle.italic, color: Color(0xffb74093));
+        TextStyle(fontStyle: FontStyle.italic, color: Colors.black);
     const _defaultStyle = TextStyle(color: Colors.black);
 
     final RegExp _boldRegExp = RegExp(r"(\*\*\S+\*\*|\_\_\S+\_\_)");

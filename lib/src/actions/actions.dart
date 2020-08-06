@@ -1,4 +1,5 @@
 import '../models/user.dart';
+import '../models/note.dart';
 
 abstract class Action {}
 
@@ -48,6 +49,20 @@ class AddNoteAction extends NotesAction {
     return AddNoteAction(
       title: this.title,
       content: this.content,
+      user: user,
+    );
+  }
+}
+
+class UpdateNoteAction extends NotesAction {
+  final Note note;
+  final User user;
+
+  UpdateNoteAction({this.note, this.user});
+
+  UpdateNoteAction copyWith({User user}) {
+    return UpdateNoteAction(
+      note: this.note,
       user: user,
     );
   }

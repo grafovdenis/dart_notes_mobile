@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:dart_notes_mobile_v3/src/actions/actions.dart';
-import 'package:dart_notes_mobile_v3/src/models/state/user_state.dart';
+import 'package:dart_notes_mobile/src/actions/actions.dart';
+import 'package:dart_notes_mobile/src/models/state/user_state.dart';
 
 import 'bloc.dart';
 import '../repository/user_repository.dart';

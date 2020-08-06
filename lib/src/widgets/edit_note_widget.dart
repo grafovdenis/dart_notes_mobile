@@ -1,20 +1,18 @@
 import 'package:dart_notes_mobile/src/actions/actions.dart';
 import 'package:dart_notes_mobile/src/blocs/bloc_provider.dart';
 import 'package:dart_notes_mobile/src/blocs/core_bloc.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-
+import 'package:dart_notes_mobile/src/models/note.dart';
 import 'package:flutter/material.dart';
 
-import 'color_picker_widget.dart';
-
-class NewNoteWidget extends StatefulWidget {
-  NewNoteWidget({Key key}) : super(key: key);
+class EditNoteWidget extends StatefulWidget {
+  final Note note;
+  EditNoteWidget({Key key, this.note}) : super(key: key);
 
   @override
-  _NewNoteWidgetState createState() => _NewNoteWidgetState();
+  _EditNoteWidgetState createState() => _EditNoteWidgetState();
 }
 
-class _NewNoteWidgetState extends State<NewNoteWidget> {
+class _EditNoteWidgetState extends State<EditNoteWidget> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
 
@@ -25,8 +23,8 @@ class _NewNoteWidgetState extends State<NewNoteWidget> {
   Widget build(BuildContext context) {
     final CoreBloc coreBloc = BlocProvider.of<CoreBloc>(context);
     final _formKey = GlobalKey<FormState>();
-
-    Color currentColor = Colors.white;
+    _titleController.text = widget.note.title;
+    _contentController.text = widget.note.content;
 
     return Form(
       key: _formKey,
@@ -65,11 +63,8 @@ class _NewNoteWidgetState extends State<NewNoteWidget> {
           Container(
             alignment: Alignment.center,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                // SizedBox(width: 8),
-                // ColorPickerWidget(),
-                SizedBox(width: 8),
                 Container(
                   height: 40,
                   width: 100,
@@ -83,21 +78,21 @@ class _NewNoteWidgetState extends State<NewNoteWidget> {
                     },
                   ),
                 ),
-                Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16),
-                  child: IconButton(
-                    icon: Icon(Icons.send),
-                    onPressed: () async {
-                      if (_formKey.currentState.validate()) {
-                        coreBloc.action.add(AddNoteAction(
-                          title: _titleController.text,
-                          content: _contentController.text,
-                        ));
-                        Navigator.of(context).pop();
-                      }
-                    },
-                  ),
+                OutlineButton(
+                  child: Icon(Icons.save),
+                  onPressed: () async {
+                    if (_formKey.currentState.validate()) {
+                      coreBloc.action.add(UpdateNoteAction(
+                          note: widget.note.copyWith(
+                        title: _titleController.text,
+                        content: _contentController.text,
+                      )));
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0)),
+                  borderSide: BorderSide.none,
                 ),
               ],
             ),

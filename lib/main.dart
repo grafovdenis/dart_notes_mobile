@@ -1,10 +1,13 @@
-import 'package:dart_notes_mobile_v3/src/blocs/auth_bloc.dart';
-import 'package:dart_notes_mobile_v3/src/blocs/core_bloc.dart';
-import 'package:dart_notes_mobile_v3/src/storage.dart';
-import 'package:dart_notes_mobile_v3/src/themes.dart';
 import 'package:flutter/material.dart';
 
+import 'src/storage.dart';
+
+import 'src/themes.dart';
+
 import 'src/blocs/bloc_provider.dart';
+import 'src/blocs/auth_bloc.dart';
+import 'src/blocs/core_bloc.dart';
+
 import 'src/pages/auth_page.dart';
 import 'src/pages/home_page.dart';
 

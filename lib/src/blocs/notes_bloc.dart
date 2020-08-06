@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:dart_notes_mobile_v3/src/actions/actions.dart';
-import 'package:dart_notes_mobile_v3/src/models/state/notes_state.dart';
-import 'package:dart_notes_mobile_v3/src/repository/notes_repository.dart';
+import 'package:dart_notes_mobile/src/actions/actions.dart';
+import 'package:dart_notes_mobile/src/models/state/notes_state.dart';
+import 'package:dart_notes_mobile/src/repository/notes_repository.dart';
 
 import 'bloc.dart';
 
@@ -32,6 +32,8 @@ class NotesBloc extends Bloc {
           await _notesRepository.deleteNote(id: action.id, user: action.user);
       _currentState = _currentState.copyWith(notes: notes);
       _stateController.sink.add(_currentState);
+    } else if (action is UpdateNoteAction && action.user != null) {
+      
     }
   }
 

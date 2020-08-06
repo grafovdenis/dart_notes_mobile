@@ -1,4 +1,4 @@
-# dart_notes_mobile_v3
+# dart_notes_mobile
 
 A new Flutter project.
 

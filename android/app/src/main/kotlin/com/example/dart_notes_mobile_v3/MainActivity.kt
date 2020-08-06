@@ -1,4 +1,4 @@
-package com.example.dart_notes_mobile_v3
+package com.example.dart_notes_mobile
 
 import io.flutter.embedding.android.FlutterActivity
 

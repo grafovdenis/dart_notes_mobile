@@ -9,4 +9,12 @@ class Note {
   String toString() {
     return '{"id": $id, "title": "${title ?? ""}", "content": "${content ?? ""}"}';
   }
+
+  Note copyWith({int id, String title, String content}) {
+    return Note(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      content: content ?? this.content,
+    );
+  }
 }

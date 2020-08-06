@@ -1,10 +1,14 @@
+import 'package:dart_notes_mobile/src/widgets/edit_note_widget.dart';
+
 import '../models/note.dart';
 import 'package:flutter/material.dart';
 
 class NoteWidget extends StatelessWidget {
   final Note data;
   final Function onDismissed;
-  const NoteWidget({Key key, this.data, this.onDismissed}) : super(key: key);
+  final Function onTap;
+  const NoteWidget({Key key, this.data, this.onDismissed, this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +28,7 @@ class NoteWidget extends StatelessWidget {
       ),
       key: Key("${data.id}"),
       child: InkWell(
-        onTap: () {
-          // Navigator.of(context).pushNamed('/edit_note');
-        },
+        onTap: onTap,
         child: ListTile(
           title: Text((data.title.isNotEmpty) ? data.title : data.content),
           subtitle: (data.title.isNotEmpty) ? Text(data.content) : null,

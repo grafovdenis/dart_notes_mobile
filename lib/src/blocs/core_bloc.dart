@@ -45,6 +45,8 @@ class CoreBloc extends Bloc {
       notesBloc.action.add(action.copyWith(user: _currentState.userState.user));
     } else if (action is DeleteNoteAction) {
       notesBloc.action.add(action.copyWith(user: _currentState.userState.user));
+    } else if (action is UpdateNoteAction) {
+      notesBloc.action.add(action.copyWith(user: _currentState.userState.user));
     }
   }
 
