@@ -1,15 +1,32 @@
 import 'package:flutter/widgets.dart';
 
-class BlocProvider<Bloc> extends InheritedWidget {
-  final Bloc bloc;
+import 'bloc.dart';
 
-  BlocProvider({Key key, this.bloc, child}) : super(key: key, child: child);
+class BlocProvider<T extends Bloc> extends StatefulWidget {
+  final T bloc;
+  final Widget child;
+
+  BlocProvider({Key key, this.bloc, this.child}) : super(key: key);
 
   @override
-  bool updateShouldNotify(InheritedWidget oldWidget) {
-    return true;
+  _BlocProviderState<T> createState() => _BlocProviderState<T>();
+
+  static T of<T extends Bloc>(BuildContext context) {
+    BlocProvider<T> provider =
+        context.findAncestorWidgetOfExactType<BlocProvider<T>>();
+    return provider.bloc;
+  }
+}
+
+class _BlocProviderState<T> extends State<BlocProvider<Bloc>> {
+  @override
+  void dispose() {
+    widget.bloc.dispose();
+    super.dispose();
   }
 
-  static Bloc of<Bloc>(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<BlocProvider<Bloc>>().bloc;
+  @override
+  Widget build(BuildContext context) {
+    return widget.child;
+  }
 }
