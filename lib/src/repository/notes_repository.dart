@@ -87,4 +87,18 @@ class NotesRepository {
       return _getNotesOnline(user: user);
     }
   }
+
+  Future<List<Note>> editNote({Note note, User user}) async {
+    if (user.isOffline) {
+      return _editNoteOffline(note: note);
+    } else {
+      return _editNoteOnline(note: note, user: user);
+    }
+  }
+
+  Future<List<Note>> _editNoteOffline({Note note}) async {
+    return editNoteFromStorage(note: note);
+  }
+
+  Future<List<Note>> _editNoteOnline({Note note, User user}) async {}
 }

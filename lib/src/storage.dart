@@ -63,3 +63,11 @@ Future<List<Note>> deleteNoteFromStorage({int id}) async {
   await saveNotesToStorage(notes: notes);
   return notes;
 }
+
+Future<List<Note>> editNoteFromStorage({Note note}) async {
+  final notes = await getNotesFromStorage();
+  notes.removeWhere((element) => element.id == note.id);
+  notes.add(note);
+  await saveNotesToStorage(notes: notes);
+  return notes;
+}

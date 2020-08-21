@@ -33,7 +33,10 @@ class NotesBloc extends Bloc {
       _currentState = _currentState.copyWith(notes: notes);
       _stateController.sink.add(_currentState);
     } else if (action is UpdateNoteAction && action.user != null) {
-      
+      final notes =
+          await _notesRepository.editNote(note: action.note, user: action.user);
+      _currentState = _currentState.copyWith(notes: notes);
+      _stateController.sink.add(_currentState);
     }
   }
 
