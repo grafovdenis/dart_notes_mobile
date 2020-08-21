@@ -1,83 +1,10 @@
+library actions;
+
+export 'auth_actions.dart';
+export 'user_actions.dart';
+export 'notes_actions.dart';
+
 import '../models/user.dart';
 import '../models/note.dart';
 
 abstract class Action {}
-
-// Auth actions
-class AuthAction extends Action {}
-
-class LogInAction extends AuthAction {
-  final String username;
-  final String password;
-
-  LogInAction({this.username, this.password});
-}
-
-class SignInAction extends AuthAction {
-  final String username;
-  final String password;
-
-  SignInAction({this.username, this.password});
-}
-
-class OfflineAuthAction extends AuthAction {}
-
-// User actions
-class UserAction extends Action {}
-
-class LoadUserAction extends UserAction {}
-
-class SignOutUserAction extends UserAction {}
-
-// Notes actions
-class NotesAction extends Action {}
-
-class LoadNotesAction extends NotesAction {
-  final User user;
-
-  LoadNotesAction({this.user});
-}
-
-class AddNoteAction extends NotesAction {
-  final String title;
-  final String content;
-  final User user;
-
-  AddNoteAction({this.title, this.content, this.user});
-
-  AddNoteAction copyWith({User user}) {
-    return AddNoteAction(
-      title: this.title,
-      content: this.content,
-      user: user,
-    );
-  }
-}
-
-class UpdateNoteAction extends NotesAction {
-  final Note note;
-  final User user;
-
-  UpdateNoteAction({this.note, this.user});
-
-  UpdateNoteAction copyWith({User user}) {
-    return UpdateNoteAction(
-      note: this.note,
-      user: user,
-    );
-  }
-}
-
-class DeleteNoteAction extends NotesAction {
-  final int id;
-  final User user;
-
-  DeleteNoteAction({this.id, this.user});
-
-  DeleteNoteAction copyWith({User user}) {
-    return DeleteNoteAction(
-      id: this.id,
-      user: user,
-    );
-  }
-}
